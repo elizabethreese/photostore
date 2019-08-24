@@ -1,0 +1,19 @@
+Relationships
+
+A user will have many images
+A user will have many albums
+
+An image will have one user
+An image will have many albums
+
+An album will have one user
+An album will have many images
+
+User <-> Image
+1 to many
+
+User <-> Album
+1 to many
+
+Image <-> Album
+Many to many
