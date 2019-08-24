@@ -7,8 +7,11 @@ module.exports = (sequelize, DataTypes) => {
     PasswordHash: DataTypes.STRING,
     Email: DataTypes.STRING
   }, {});
-  User.associate = function(models) {
-    // associations can be defined here
+  User.associate = function (models) {
+    // User has many images
+    User.hasMany(models.Image, { as: 'images' });
+    // User has many albums
+    User.hasMany(models.Album, { as: 'albums' });
   };
   return User;
 };
