@@ -18,7 +18,11 @@ module.exports = {
         type: Sequelize.STRING
       },
       UserId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {    // User has many images 1:n
+          model: "User",
+          key: 'UserId'
+        }
       },
       createdAt: {
         allowNull: false,

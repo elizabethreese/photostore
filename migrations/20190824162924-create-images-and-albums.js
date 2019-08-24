@@ -9,10 +9,18 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       ImageId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {    // Album has many images n:n
+          model: "Image",
+          key: 'ImageId'
+        }
       },
       AlbumId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {    // Image has many albums n:n
+          model: "Album",
+          key: 'AlbumId'
+        }
       },
       createdAt: {
         allowNull: false,
