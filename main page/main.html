@@ -1,26 +1,32 @@
 <html>
     <head>
         <link rel="stylesheet" href="main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="main.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     </head>
     <body>
+        <div class="logo-container">
+        <img class="logo" src="logo.png" alt="">
+        </div>
         <div class="main-header">
             <button class="sign-up">Sign Up</button>
             <button class="sign-in">Sign in</button>
         </div>
-        <div class="login-form">
-            <!-- <form>
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password">
-                <div id="lower">
-                <input type="checkbox"><label for="checkbox">Keep me logged in</label>
-                <input type="submit" value="Login">
-                </div>
-            </form> -->
-        </div>
+        <div class="login-container">   
+                <form class = "login-form">
+                    <div class="login-username">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username">
+                    </div>
+                    <div class="login-passowrd">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password">
+                    </div>
+                    <div id="lower">
+                    <input type="submit" value="Login">
+                    </div>
+                </form>
+            </div>
         <div class="form-holder">
             <form action="" method="POST">
                 <input class="form-input" type="file" multiple>
