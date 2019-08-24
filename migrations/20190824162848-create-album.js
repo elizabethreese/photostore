@@ -8,17 +8,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      AlbumId: {
-        type: Sequelize.INTEGER
-      },
       Name: {
         type: Sequelize.STRING
       },
       UserId: {
         type: Sequelize.INTEGER,
         references: {    // User has many albums 1:n
-          model: "User",
-          key: 'UserId'
+          model: "Users",
+          key: 'id'
         }
       },
       createdAt: {

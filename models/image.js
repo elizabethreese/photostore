@@ -8,9 +8,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Image.associate = function (models) {
     // An image belongs to a user
-    Image.belongsTo(models.User, { foreignKey: 'userId', as: 'user' });
+    Image.belongsTo(models.User, { foreignKey: 'id', as: 'user' });
     // An image belongs to many albums
-    Image.belongsToMany(models.Album, { through: 'ImagesAndAlbums', foreignKey: 'albumId', as: 'albums' });
+    Image.belongsToMany(models.Album, { through: 'ImagesAndAlbums', foreignKey: 'id', as: 'albums' });
   };
   return Image;
 };
