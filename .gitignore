@@ -1,6 +1,7 @@
 # ignore all files starting with . or ~
 .*
 ~*
+*/node_modules/*
 
 # ignore log files and databases
 *.log
