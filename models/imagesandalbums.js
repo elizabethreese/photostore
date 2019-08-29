@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     AlbumId: DataTypes.INTEGER
   }, {});
   ImagesAndAlbums.associate = function (models) {
-    ImagesAndAlbums.belongsTo(model.Image, { foreignKey: 'id' });
-    ImagesAndAlbums.belongsTo(model.Album, { foreignKey: 'id' });
+    ImagesAndAlbums.belongsTo(models.Image, { foreignKey: 'id' });
+    ImagesAndAlbums.belongsTo(models.Album, { foreignKey: 'id' });
   };
   return ImagesAndAlbums;
 };
