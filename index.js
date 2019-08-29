@@ -86,13 +86,13 @@ app.post("/login", function(req, res, next){
     var password = req.body.password;
 
     db.User.findOne( {where: {Email: email}}).then(function (user) {
-         req.session.User_id = User.id;
+        req.session.User_id = user.id;
             if (user === null) {
             res.render('login');}
             else {
                 bcrypt.compare(password, user.PasswordHash, function(err, same){
                     if (same){
-                        req.session.User_id = User.id;
+                        req.session.User_id = user.id;
                         res.redirect("/photo-list");
                     }
                     else{
