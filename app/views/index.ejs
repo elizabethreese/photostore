@@ -1,41 +1,32 @@
 <html>
+    <head>
+        <link rel="stylesheet" href="main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="main.js"></script>
+    </head>
+    <body>
+        <div>
+            <!-- Include header-in-session.esj if in a session.  If not include header-not-in-session -->
+        </div>
+        <div>
+            <% include login-fields %>
+        </div>
+        <div class="form-holder">
+            <form action="" method="POST">
+                <div class="form-input">
+               
+                <input class="file-hide" type="file" multiple>
+                </div>
+                <button class="store-button" type="submit">Store</button>
+            </form>
+        </div>
+        <div class = "footer-container">
+            <a href="">Home</a>
+            <br>    
+            <a href="">Contact Us</a>
+            <br>
+            <a href="">Help</a>
 
-<head>
-    <link rel="stylesheet" href="/public/main-page/main.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="main.js"></script>
-</head>
-
-<body>
-    <div class="logo-container">
-        <img class="logo" src="logo.png" alt="">
-    </div>
-    <div class="main-header">
-        <button class="sign-up">Sign Up</button>
-        <button class="sign-in">Sign in</button>
-    </div>
-    <div class="login-container">
-        <form class="login-form">
-            <div class="login-username">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username">
-            </div>
-            <div class="login-passowrd">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password">
-            </div>
-            <div id="lower">
-                <input type="submit" value="Login">
-            </div>
-        </form>
-    </div>
-    <div class="form-holder">
-        <form action="" method="POST">
-            <input class="form-input" type="file" multiple>
-            <p class="form-text">Store your photos here</p>
-            <button class="store-button" type="submit">Store</button>
-        </form>
-    </div>
-</body>
-
+        </div>
+    </body>
 </html>
