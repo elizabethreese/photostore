@@ -41,10 +41,21 @@ app.get("/displaytoSession", function (req, res, next) {
  res.send(param);
 })
 
+//Route to main page 
+app.get("/", function (req, res, next){
+    if( req.session.User_id == undefined) {
+      res.redirect('/sign-up');
+        return
+    }
+    res.render('index');
+});
+            
+
+
 //signup functionality
 app.get("/sign-up", function (req, res, next) {
     if(req.session.User_id !== undefined){
-        res.redirect("/photo-list");
+        res.redirect('/index');
         return
     }
     res.render('sign-up');
@@ -52,7 +63,7 @@ app.get("/sign-up", function (req, res, next) {
 
 app.post("/sign-up", function (req, res, next){
     if(req.session.User_id !== undefined){
-        res.redirect("/photo-list");
+        res.redirect("/");
         return
     }
 
@@ -63,16 +74,17 @@ app.post("/sign-up", function (req, res, next){
     bcrypt.hash(password, 10, function (err, hash) {
         db.User.create({ Name: name, Login: login, PasswordHash: hash, Email: email }).then(function(User){
             req.session.User_id = User.id;
-            res.redirect("/photo-list")
+            res.redirect("/")
         })
        
     });
 })
 
-//Route to main photo page
-app.get("/photo-list", function(req, res, next){
+//Route to photo page
+app.get("/photos", function(req, res, next){
     res.render('photo-list');
 });
+
 
 //logging in
 app.get("/login", function(req, res, next){
@@ -93,7 +105,7 @@ app.post("/login", function(req, res, next){
                 bcrypt.compare(password, user.PasswordHash, function(err, same){
                     if (same){
                         req.session.User_id = user.id;
-                        res.redirect("/photo-list");
+                        res.redirect("/");
                     }
                     else{
                         res.render("login"); 
@@ -101,8 +113,8 @@ app.post("/login", function(req, res, next){
                 })
             }
     })
-
 })
+
 //logging out
 app.get("/log-out", function(req, res, next){
     req.session.destroy();
