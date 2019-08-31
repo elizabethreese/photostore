@@ -1,7 +1,6 @@
 {
   "name": "photolotus",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -27,5 +26,6 @@
     "pg": "^7.12.1",
     "pg-promise": "^9.1.1",
     "sequelize": "^5.17.0"
-  }
+  },
+  "description": ""
 }
