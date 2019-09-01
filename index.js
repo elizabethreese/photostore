@@ -6,7 +6,7 @@ var ejs = require('ejs');
 var bodyParser = require('body-parser');
 var seqStore = require('connect-session-sequelize')(session.Store);
 var bcrypt = require('bcrypt');
-var saveImage = require('./public/saveImage');
+var upload = require('./public/upload');
 
 var sessionStorage = new seqStore({
     db: db.sequelize
@@ -89,11 +89,11 @@ app.get("/photos", function (req, res, next) {
     res.render('photo-list');
 });
 
-app.post("/upload-photos", function (req, res, next) {
-    console.log("Upload photos POSTED")
-    console.log(req.body);
+app.post("/upload", function (req, res, next) {
     var photos = req.body.photos;
-    saveImage.uploadImages(photos);
+    upload.uploadImages(photos, req.session.User_id);
+    res.status("201").send();
+    res.redirect("/");
 })
 
 
