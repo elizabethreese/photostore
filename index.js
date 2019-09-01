@@ -15,6 +15,10 @@ var sessionStorage = new seqStore({
 var app = express();
 app.use(cookieParser());
 
+// This body parser is needed to access the body of a request cleanly
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 // Statically host the current (public) directory
 app.use(express.static('./public'));
 
@@ -25,12 +29,11 @@ app.use(session({
     cookie: { maxAge: 100000000 },
     store: sessionStorage
 }));
-
-//middleware
 sessionStorage.sync();
+
+// Set the view engine
 app.set('view engine', 'ejs');
 app.set('views', './app/views');
-app.use(bodyParser.urlencoded({ extended: false }));
 
 //saving value to session
 app.get("/valuetoSession", function (req, res, next) {
@@ -54,8 +57,6 @@ app.get("/", function (req, res, next) {
     res.render('index');
 });
 
-
-
 //signup functionality
 app.get("/sign-up", function (req, res, next) {
     if (req.session.User_id !== undefined) {
@@ -70,7 +71,6 @@ app.post("/sign-up", function (req, res, next) {
         res.redirect("/");
         return
     }
-
     var name = req.body.name;
     var login = req.body.login;
     var email = req.body.email;
@@ -88,6 +88,13 @@ app.post("/sign-up", function (req, res, next) {
 app.get("/photos", function (req, res, next) {
     res.render('photo-list');
 });
+
+app.post("/upload-photos", function (req, res, next) {
+    console.log("Upload photos POSTED")
+    console.log(req.body);
+    var photos = req.body.photos;
+    saveImage.uploadImages(photos);
+})
 
 
 //logging in
