@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="main.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script src="main.js"></script>
-    </head>
-    <body>
-        <div>
-            <!-- Include header-in-session.esj if in a session.  If not include header-not-in-session -->
-        </div>
-        <div>
-            <% include login-fields %>
-        </div>
-        <div class="form-holder">
-            <form action="" method="POST">
-                <div class="form-input">
-               
-                <input class="file-hide" type="file" multiple>
-                </div>
-                <button class="store-button" type="submit">Store</button>
-            </form>
-        </div>
-        <div class = "footer-container">
-            <a href="">Home</a>
-            <br>    
-            <a href="">Contact Us</a>
-            <br>
-            <a href="">Help</a>
 
-        </div>
-    </body>
+<head>
+    <link rel="stylesheet" href="main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/saveImage.js"></script>
+</head>
+
+<body>
+    <div>
+        <!-- Include header-in-session.esj if in a session.  If not include header-not-in-session -->
+    </div>
+    <div>
+        <% include login-fields %>
+    </div>
+    <div class="form-holder">
+        <form action="" method="POST">
+            <div class="form-input">
+
+                <input class="file-hide" type="file" multiple id="image">
+            </div>
+            <button class="store-button" type="submit" onclick="uploadImages()">Store</button>
+        </form>
+    </div>
+    <div class="footer-container">
+        <a href="">Home</a>
+        <br>
+        <a href="">Contact Us</a>
+        <br>
+        <a href="">Help</a>
+
+    </div>
+</body>
+
 </html>
