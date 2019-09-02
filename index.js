@@ -67,10 +67,7 @@ app.get("/sign-up", function (req, res, next) {
 
 
 app.post("/sign-up", function (req, res, next){
-    if(req.session.User_id !== undefined){
-        res.redirect('/');
-        return
-    }
+
 
     var name = req.body.name;
     var login = req.body.login;
@@ -84,11 +81,6 @@ app.post("/sign-up", function (req, res, next){
        
     });
 })
-
-//Route to photo page
-app.get("/photos", function(req, res, next){
-    res.render('photo-list');
-});
 
 
 //logging in
