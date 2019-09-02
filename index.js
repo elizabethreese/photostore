@@ -49,21 +49,22 @@ app.get("/", function (req, res, next){
     }
     res.render('index');
 });
-            
-
+   
 
 //signup functionality
 app.get("/sign-up", function (req, res, next) {
     if(req.session.User_id !== undefined){
-        res.redirect('/index');
+        res.redirect('/');
         return
     }
     res.render('sign-up');
 });
 
+
+
 app.post("/sign-up", function (req, res, next){
     if(req.session.User_id !== undefined){
-        res.redirect("/");
+        res.redirect('/');
         return
     }
 
@@ -74,7 +75,7 @@ app.post("/sign-up", function (req, res, next){
     bcrypt.hash(password, 10, function (err, hash) {
         db.User.create({ Name: name, Login: login, PasswordHash: hash, Email: email }).then(function(User){
             req.session.User_id = User.id;
-            res.redirect("/")
+            res.redirect('/')
         })
        
     });
@@ -113,6 +114,16 @@ app.post("/login", function(req, res, next){
                 })
             }
     })
+})
+
+//route to photo list 
+app.get("/my-photos", function(req, res, next){
+    res.render('photo-list');
+})
+
+//route to albums
+app.get("/my-albums", function(req, res, next){
+    res.render('albums');
 })
 
 //logging out
