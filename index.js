@@ -6,6 +6,7 @@ var ejs = require('ejs');
 var bodyParser = require('body-parser');
 var seqStore = require('connect-session-sequelize')(session.Store);
 var bcrypt = require('bcrypt');
+var path = require('path');
 
 var sessionStorage = new seqStore({
     db: db.sequelize
@@ -13,6 +14,9 @@ var sessionStorage = new seqStore({
 
 var app = express();
 app.use(cookieParser());
+
+app.use(express.static(__dirname + '/public'));
+
 
 app.use(session({
     secret: 'temporarySecretKey',
