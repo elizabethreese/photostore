@@ -2,8 +2,8 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="./scripts/upload-data.js"></script>
 </head>
 
 <body>
@@ -14,10 +14,13 @@
         <% include login-fields %>
     </div>
     <div class="form-holder">
-        <form action="/upload" method="POST">
-            <input class="file-hide" type="file" name="photos" multiple>
-            <button class="store-button" type="submit">Store</button>
+        <form name="imageForm" id="imageForm">
+            <input type="file" name="image" id="image">
+            <!--<button class="store-button" type="submit">Store</button>-->
         </form>
+    </div>
+    <div class="image-upload-button">
+        <button class="js-upload">Find Landmarks</button>
     </div>
     <div class="footer-container">
         <a href="">Home</a>

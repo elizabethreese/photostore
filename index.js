@@ -6,7 +6,7 @@ var ejs = require('ejs');
 var bodyParser = require('body-parser');
 var seqStore = require('connect-session-sequelize')(session.Store);
 var bcrypt = require('bcrypt');
-var upload = require('./public/upload');
+var upload = require('./app/modules/upload');
 
 var sessionStorage = new seqStore({
     db: db.sequelize
@@ -16,8 +16,8 @@ var app = express();
 app.use(cookieParser());
 
 // This body parser is needed to access the body of a request cleanly
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 
 // Statically host the current (public) directory
 app.use(express.static('./public'));
@@ -90,12 +90,12 @@ app.get("/photos", function (req, res, next) {
 });
 
 app.post("/upload", function (req, res, next) {
-    var photos = req.body.photos;
-    upload.uploadImages(photos, req.session.User_id);
+    var images = req.body.images;
+    //console.log(req.body);
+    upload.uploadImages(images, req.session.User_id);
     res.status("201").send();
     res.redirect("/");
 })
-
 
 //logging in
 app.get("/login", function (req, res, next) {

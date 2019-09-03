@@ -9,27 +9,24 @@ var path = require('path');
  * Expose the functions that we need in other files
  */
 module.exports = {
-    uploadImages: function (files, userId) {
+    uploadImages: function (images, userId) {
         // If there are files uploaded in the form
-        if (files.length > 0) {
+        if (images.length > 0) {
             // Check if the user has a directory and create one if not
             if (checkUserDirectory(userId)) {
                 // Go through each file and upload it to the server
-                files.forEach(file => {
+                images.forEach(image => {
                     // If the file is a supported image type
-                    if (isSupportedFileImage(file)) {
-                        // Turn it into base64 data
-                        var encodedBase64 = encodeBase64(file);
-
+                    if (isSupportedFileImage(image.name)) {
                         // Get a filepath
-                        var filePath = getFilePath(file, userId);
+                        var filePath = getFilePath(image.name, userId);
 
                         // Save the image on the server
-                        saveImage(encodedBase64, filePath);
+                        saveImage(image.base64img, filePath);
                     }
                 })
-            };
-        }
+            }
+        };
     }
 };
 
@@ -41,6 +38,7 @@ module.exports = {
  */
 function checkUserDirectory(userId) {
     var userDirectoryExists = false;
+    console.log(process.cwd());
     // If the user already has a folder on the server
     if (fs.existsSync(`./test/${userId}/`)) {
         userDirectoryExists = true;
@@ -85,6 +83,8 @@ function isSupportedFileImage(file) {
  */
 function encodeBase64(file) {
     // Convert binary data to base64 encoded string
+    console.log(file);
+    console.log(typeof file);
     var encodedBase64 = new Buffer(file).toString("base64");
 
     return encodedBase64;
@@ -113,8 +113,10 @@ function getFilePath(file, userId) {
 function saveImage(base64img, filePath) {
 
     // Create a buffer for the data
-    var buffer = new Buffer(base64img, 'base64');
-
+    //var buffer = new Buffer(base64img, 'base64');
+    //console.log(base64img);
     // Save the file to the server
-    fs.writeFileSync(filePath, buffer);
+    fs.writeFileSync(filePath, base64img, 'base64', function (err) {
+        console.log(err);
+    });
 }

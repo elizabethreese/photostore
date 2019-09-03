@@ -192,7 +192,7 @@ padding: 10px;
 z-index: 0;
 }
 .form-input{
-background-image: url('upload-img.png');
+background-image: url('./images/upload-img.png');
 background-repeat: no-repeat;
 background-position: center;
 background-size: 175px;
