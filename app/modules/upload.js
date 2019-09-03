@@ -10,6 +10,8 @@ var path = require('path');
  */
 module.exports = {
     uploadImages: function (images, userId) {
+        var uploadedImages = [];
+
         // If there are files uploaded in the form
         if (images.length > 0) {
             // Check if the user has a directory and create one if not
@@ -23,10 +25,20 @@ module.exports = {
 
                         // Save the image on the server
                         saveImage(image.base64img, filePath);
+
+                        // Put the image name and path in the results array
+                        uploadedImages.push(
+                            {
+                                name: image.name,
+                                path: filePath
+                            }
+                        )
                     }
                 })
             }
         };
+        // Return the array of uploaded image names and paths
+        return uploadedImages;
     }
 };
 

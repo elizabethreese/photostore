@@ -91,8 +91,10 @@ app.get("/photos", function (req, res, next) {
 
 app.post("/upload", function (req, res, next) {
     var images = req.body.images;
-    //console.log(req.body);
-    upload.uploadImages(images, req.session.User_id);
+    var uploadedImages = upload.uploadImages(images, req.session.User_id);
+    uploadedImages.forEach(uploadedImage => {
+        db.Image.create({ Name: uploadedImage.name, Path: uploadedImage.path, UserId: req.session.User_id });
+    })
     res.status("201").send();
     res.redirect("/");
 })
