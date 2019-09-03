@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var seqStore = require('connect-session-sequelize')(session.Store);
 var bcrypt = require('bcrypt');
 var upload = require('./app/modules/upload');
+var download = require('./app/modules/download');
 
 var sessionStorage = new seqStore({
     db: db.sequelize
@@ -86,7 +87,16 @@ app.post("/sign-up", function (req, res, next) {
 
 //Route to photo page
 app.get("/photos", function (req, res, next) {
-    res.render('photo-list');
+    db.Image.findAll({
+        where:
+        {
+            UserId: req.session.User_id
+        }
+    }).then(function (images) {
+        console.log(images);
+        download.downloadImages(images);
+    })
+    //res.render('photo-list');
 });
 
 app.post("/upload", function (req, res, next) {

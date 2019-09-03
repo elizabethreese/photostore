@@ -1,8 +1,16 @@
 /**
+ * This module is used for uploading images to the server file system
+ * that were received from the client.
+ */
+
+/**
  * Include the File System module
  */
 var fs = require('fs');
 
+/**
+ * Include the Path module
+ */
 var path = require('path');
 
 /**
@@ -95,8 +103,6 @@ function isSupportedFileImage(file) {
  */
 function encodeBase64(file) {
     // Convert binary data to base64 encoded string
-    console.log(file);
-    console.log(typeof file);
     var encodedBase64 = new Buffer(file).toString("base64");
 
     return encodedBase64;
