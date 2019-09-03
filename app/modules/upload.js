@@ -129,10 +129,6 @@ function getFilePath(file, userId) {
  * @param filePath -  The path to save the image to
  */
 function saveImage(base64img, filePath) {
-
-    // Create a buffer for the data
-    //var buffer = new Buffer(base64img, 'base64');
-    //console.log(base64img);
     // Save the file to the server
     fs.writeFileSync(filePath, base64img, 'base64', function (err) {
         console.log(err);

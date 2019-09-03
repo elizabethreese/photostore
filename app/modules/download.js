@@ -9,11 +9,38 @@
 var fs = require('fs');
 
 /**
+ * Include the Path module
+ */
+var path = require('path');
+
+/**
  * Expose the functions that we need in other files
  */
 module.exports = {
-    downloadImages: function (filePaths) {
-        console.log("Downloading images for ya user hehe");
+    downloadImages: function (images) {
+        var downloadedImages = [];
+
+        // If there were image records in the database
+        if (images.length > 0) {
+            // Gather information and download each image
+            images.forEach(image => {
+                // Get the filepath
+                filePath = image.dataValues.Path;
+                // Get the file extention
+                fileExtention = path.extname(filePath);
+                // Add the image information to the array of downloaded images
+                downloadedImages.push(
+                    {
+                        name: image.dataValues.Name,
+                        extention: fileExtention,
+                        baseName: path.basename(filePath, fileExtention),
+                        base64img: encodeBase64(filePath)
+                    }
+                )
+            })
+        }
+        // Return the array of downloaded images
+        return downloadedImages;
     }
 };
 

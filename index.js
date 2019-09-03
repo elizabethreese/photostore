@@ -93,10 +93,15 @@ app.get("/photos", function (req, res, next) {
             UserId: req.session.User_id
         }
     }).then(function (images) {
-        console.log(images);
-        download.downloadImages(images);
+        // Download all the user images from the server
+        var downloadedImages = download.downloadImages(images);
+        // Render the photo list with the downloaded images
+        res.render('photo-list',
+            {
+                downloadedImages
+            }
+        );
     })
-    //res.render('photo-list');
 });
 
 app.post("/upload", function (req, res, next) {
