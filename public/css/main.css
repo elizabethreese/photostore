@@ -49,6 +49,22 @@ right: 10px;
 z-index: 0;
 }
 
+.list-item{
+  font-family: 'open sans';
+  color: white;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all .4s ease;
+  line-height: 30px;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.list-item:hover{
+  cursor: pointer;
+  background-color: #b3e3ff;
+}
+
 .sign-up{
 margin: 0px 5px 0px 5px;
 order: 1;
@@ -163,7 +179,7 @@ transition: all .4s ease;
 z-index: 0;
 }
 .form-holder{
-margin-top: 100px;
+margin-top: 30px;
 display: flex;
 flex-wrap: nowrap;
 justify-content: center;
@@ -310,3 +326,65 @@ cursor: pointer;
   font-size: 12px;
   line-height: 10px;
 }
+
+@media only screen 
+  and (min-device-width : 375px) 
+  and (max-device-width : 667px)
+{ 
+    .form-holder{
+      margin-top: 125px;
+      display: block;
+      width: 100%;
+    }
+    .form-input{
+      width: 340px;
+      margin: 100px auto 10px auto;
+    }
+    .album-name{
+    text-align: center;
+    font-size: 20px;
+    width: 340px;
+    margin: 10px 0px 10px 5px;
+    height: 25px;
+    }
+
+    .store-button{
+      font-size: 20px;
+      width: 348px;
+      height: 50px;
+      margin: 0px 0px 0px 6px;
+    }
+    .header-buttons{
+      display: block;
+      width: 100px;
+      position: absolute;
+      
+    }
+    .login-container{
+      height: 900px;
+      width: 700px;
+      display: block;
+      position: absolute;
+      margin: auto;
+      left: 140px;
+      top: 611px;
+    }
+    #sign-up-input{
+      width: 500px;
+      height: 50px;
+      font-size: 50px;
+      border-radius: 15px;
+      margin: 46px;
+    }
+    .sign-in-button{
+      width: 225px;
+      margin: 20px;
+      height: 100px;
+      border-radius: 10px;
+      font-size: 38px;
+    }
+    
+  }
+
+
+ 
