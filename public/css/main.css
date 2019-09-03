@@ -165,7 +165,7 @@ z-index: 0;
 .form-holder{
 margin-top: 100px;
 display: flex;
-flex-wrap: wrap;
+flex-wrap: nowrap;
 justify-content: center;
 overflow: hidden;
 z-index: 0;
@@ -192,6 +192,7 @@ font-family: Arial;
 padding: 10px;
 z-index: 0;
 }
+
 .form-input{
 background-image: url('/css/images/upload-img.png');
 background-repeat: no-repeat;
@@ -224,7 +225,7 @@ cursor: pointer;
 z-index: 0;
 }
 .store-button{
-order: 2;
+order: 3;
 margin: 0;
 color: #fff;
 background: #b3e3ff;
@@ -294,4 +295,18 @@ bottom: 0;
 background-color: rgba(0,0,0,0.5); 
 z-index: 2; 
 cursor: pointer; 
+}
+
+.album-name{
+  order: 2;
+  width: 496px;
+  margin: 10px 0px 0px 0px;
+  padding: 5px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  background: #F6F7F9;
+  color: #748194;
+  font-size: 12px;
+  line-height: 10px;
 }
