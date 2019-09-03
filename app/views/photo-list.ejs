@@ -1,14 +1,15 @@
 <html>
+
 <body>
-        <% include partials/header-in-session.ejs %>
-   <ul>
-       <li <% results.forEach() %>>
-           <div id="imagethumbs">
-               <div class="image-thumb-title">
-                   <a rel="image-list" href="<% filepath %>" class="element"></a>
-                   <div class="image-select-border"></div>
-               </div>
-           </div>
-       </li>
-   </ul>
+    <% if (downloadedImages.length) {
+  %><ul>
+        <% downloadedImages.forEach((image) => {%>
+        <li>
+            <%= image.name %>
+            <img style='display:block; width:100px;height:100px;'
+                src='data:image/<%= image.extention%>;base64, <%= image.base64img%>' />
+        </li>
+        <%}) %>
+    </ul><%
+} %>
 </body>
