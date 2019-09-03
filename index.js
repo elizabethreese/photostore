@@ -85,7 +85,6 @@ app.post("/sign-up", function (req, res, next) {
             req.session.User_id = User.id;
             res.redirect('/')
         })
-
     });
 })
 

@@ -294,16 +294,3 @@ background-color: rgba(0,0,0,0.5);
 z-index: 2; 
 cursor: pointer; 
 }
-.photo-container{
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  justify-content: center;
-  flex-direction: row;
-}
-
-.photos{
-    height: 200px;
-    width: 200px;
-    margin: 10px;
-}
