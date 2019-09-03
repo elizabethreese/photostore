@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <link rel="stylesheet" href="/../css/main.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    </head>
-    <body>
-         <div>
-               <% include partials/header-in-session.ejs %>
-        </div> 
-        
-        <div class="form-holder">
-            <form action="" method="POST">
-                <div class="form-input">
-                    
-               
-                <input class="file-hide" type="file" multiple>
-                </div>
-                <input class = "album-name" type="text" name="album-name" placeholder="Album name.">
-                <br>
-                <button class="store-button" type="submit">Store</button>
-            </form>
-        </div>
-        <div class = "footer-container">
-            <a href="">Home</a>
-            <br>    
-            <a href="">Contact Us</a>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/../css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="./scripts/upload-data.js"></script>
+</head>
+
+<body>
+    <div>
+        <% include partials/header-in-session.ejs %>
+    </div>
+
+    <div class="form-holder">
+        <form name="imageForm" id="imageForm">
+            <div class="form-input">
+                <input class="file-hide" type="file" name="image" id="image">
+            </div>
+            <input class="album-name" type="text" name="album-name" placeholder="Album name.">
             <br>
-            <a href="">Help</a>
-        </div>
-    </body>
+            <button class="store-button js-upload">Store</button>
+        </form>
+    </div>
+    <div class="footer-container">
+        <a href="">Home</a>
+        <br>
+        <a href="">Contact Us</a>
+        <br>
+        <a href="">Help</a>
+    </div>
+</body>
+
 </html>

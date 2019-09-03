@@ -60,11 +60,11 @@ app.get("/", function (req, res, next) {
     }
     res.render('index');
 });
-   
+
 
 //signup functionality
 app.get("/sign-up", function (req, res, next) {
-    if(req.session.User_id !== undefined){
+    if (req.session.User_id !== undefined) {
         res.redirect('/');
         return
     }
@@ -73,7 +73,7 @@ app.get("/sign-up", function (req, res, next) {
 
 
 
-app.post("/sign-up", function (req, res, next){
+app.post("/sign-up", function (req, res, next) {
 
 
     var name = req.body.name;
@@ -90,7 +90,7 @@ app.post("/sign-up", function (req, res, next){
 })
 
 //Route to photo page
-app.get("/photos", function (req, res, next) {
+app.get("/my-photos", function (req, res, next) {
     db.Image.findAll({
         where:
         {
@@ -148,13 +148,8 @@ app.post("/login", function (req, res, next) {
     })
 })
 
-//route to photo list 
-app.get("/my-photos", function(req, res, next){
-    res.render('photo-list');
-})
-
 //route to albums
-app.get("/my-albums", function(req, res, next){
+app.get("/my-albums", function (req, res, next) {
     res.render('albums');
 })
 
