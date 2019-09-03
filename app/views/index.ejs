@@ -2,25 +2,27 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/../css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="./scripts/upload-data.js"></script>
 </head>
 
 <body>
     <div>
-        <!-- Include header-in-session.esj if in a session.  If not include header-not-in-session -->
+        <% include partials/header-in-session.ejs %>
     </div>
-    <div>
-        <% include login-fields %>
-    </div>
+
     <div class="form-holder">
         <form name="imageForm" id="imageForm">
-            <input type="file" name="image" id="image">
-            <!--<button class="store-button" type="submit">Store</button>-->
+            <div class="form-input">
+                <input class="file-hide" type="file" name="image" id="image">
+            </div>
+            <input class="album-name" type="text" name="album-name" placeholder="Album name.">
+            <br>
+            <button class="store-button js-upload">Store</button>
         </form>
-    </div>
-    <div class="image-upload-button">
-        <button class="js-upload">Find Landmarks</button>
     </div>
     <div class="footer-container">
         <a href="">Home</a>

@@ -6,6 +6,7 @@ var ejs = require('ejs');
 var bodyParser = require('body-parser');
 var seqStore = require('connect-session-sequelize')(session.Store);
 var bcrypt = require('bcrypt');
+var path = require('path');
 var upload = require('./app/modules/upload');
 var download = require('./app/modules/download');
 
@@ -15,6 +16,8 @@ var sessionStorage = new seqStore({
 
 var app = express();
 app.use(cookieParser());
+
+app.use(express.static(__dirname + '/public'));
 
 // This body parser is needed to access the body of a request cleanly
 app.use(bodyParser.json({ limit: '10mb' }));
@@ -58,20 +61,21 @@ app.get("/", function (req, res, next) {
     res.render('index');
 });
 
+
 //signup functionality
 app.get("/sign-up", function (req, res, next) {
     if (req.session.User_id !== undefined) {
-        res.redirect('/index');
+        res.redirect('/');
         return
     }
     res.render('sign-up');
 });
 
+
+
 app.post("/sign-up", function (req, res, next) {
-    if (req.session.User_id !== undefined) {
-        res.redirect("/");
-        return
-    }
+
+
     var name = req.body.name;
     var login = req.body.login;
     var email = req.body.email;
@@ -79,14 +83,14 @@ app.post("/sign-up", function (req, res, next) {
     bcrypt.hash(password, 10, function (err, hash) {
         db.User.create({ Name: name, Login: login, PasswordHash: hash, Email: email }).then(function (User) {
             req.session.User_id = User.id;
-            res.redirect("/")
+            res.redirect('/')
         })
 
     });
 })
 
 //Route to photo page
-app.get("/photos", function (req, res, next) {
+app.get("/my-photos", function (req, res, next) {
     db.Image.findAll({
         where:
         {
@@ -142,6 +146,11 @@ app.post("/login", function (req, res, next) {
             })
         }
     })
+})
+
+//route to albums
+app.get("/my-albums", function (req, res, next) {
+    res.render('albums');
 })
 
 //logging out
