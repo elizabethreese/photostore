@@ -1,15 +1,24 @@
 <html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<body>
+    <link rel="stylesheet" href="/../css/main.css">
+</head>
+<body class="photo-container" >
+        <div>
+            <% include partials/header-in-session.ejs %>
+        </div>
     <% if (downloadedImages.length) {
   %><ul>
         <% downloadedImages.forEach((image) => {%>
+            
         <li>
             <%= image.name %>
-            <img style='display:block; width:100px;height:100px;'
+            <img class = "photos" style=" height: 200px; width: 200px; margin: 10px;"
                 src='data:image/<%= image.extention%>;base64, <%= image.base64img%>' />
         </li>
         <%}) %>
     </ul><%
+
 } %>
 </body>
