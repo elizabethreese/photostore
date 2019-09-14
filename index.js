@@ -9,6 +9,8 @@ var bcrypt = require('bcrypt');
 var path = require('path');
 var upload = require('./app/modules/upload');
 var download = require('./app/modules/download');
+const https = require('https');
+const fs = require('fs');
 
 var sessionStorage = new seqStore({
     db: db.sequelize
@@ -19,9 +21,20 @@ app.use(cookieParser());
 
 app.use(express.static(__dirname + '/public'));
 
+//SSL cert info
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/photolotus.app/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/photolotus.app/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/photolotus.app/chain.pem', 'utf8');
+
+const credentials = {
+    key: privateKey,
+    cert: certificate,
+    ca: ca
+};
+
 // This body parser is needed to access the body of a request cleanly
-app.use(bodyParser.json({ limit: '10mb' }));
-app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 
 // Statically host the current (public) directory
 app.use(express.static('./public'));
@@ -71,11 +84,7 @@ app.get("/sign-up", function (req, res, next) {
     res.render('sign-up');
 });
 
-
-
 app.post("/sign-up", function (req, res, next) {
-
-
     var name = req.body.name;
     var login = req.body.login;
     var email = req.body.email;
@@ -85,7 +94,6 @@ app.post("/sign-up", function (req, res, next) {
             req.session.User_id = User.id;
             res.redirect('/')
         })
-
     });
 })
 
@@ -160,6 +168,9 @@ app.get("/log-out", function (req, res, next) {
     return
 })
 
-app.listen(3000, function () {
-    console.log("listening...")
-})
+//Starting https server
+const httpsServer = https.createServer(credentials, app);
+
+httpsServer.listen(443, () => {
+    console.log('HTTPS Server running on port 443');
+});

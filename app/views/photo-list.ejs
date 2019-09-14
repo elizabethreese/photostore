@@ -1,15 +1,31 @@
 <html>
 
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/../css/main.css">
+</head>
+
 <body>
-    <% if (downloadedImages.length) {
+    <div>
+        <% include partials/header-in-session.ejs %>
+
+    </div>
+    <div class=" photo-container">
+        <% if (downloadedImages.length) {
   %><ul>
-        <% downloadedImages.forEach((image) => {%>
-        <li>
-            <%= image.name %>
-            <img style='display:block; width:100px;height:100px;'
-                src='data:image/<%= image.extention%>;base64, <%= image.base64img%>' />
-        </li>
-        <%}) %>
-    </ul><%
+            <% downloadedImages.forEach((image) => {%>
+
+            <li>
+                <p class="image-name">
+                    <%= image.name %>
+                </p>
+                <img class="photos" src='data:image/<%= image.extention%>;base64, <%= image.base64img%>' />
+            </li>
+            <%}) %>
+        </ul><%
+
 } %>
+    </div>
+
 </body>

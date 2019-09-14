@@ -116,7 +116,8 @@ function encodeBase64(file) {
  */
 function getFilePath(file, userId) {
     var basePath = path.basename(file);
-    var filePath = `./test/${userId}/${basePath}`;
+    // File path to the servers photolotus storage
+    var filePath = `../../../home/photolotus/users/${userId}/${basePath}`;
 
     return filePath;
 }

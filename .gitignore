@@ -1,8 +1,14 @@
 # ignore all files starting with . or ~
 .*
 ~*
-node_modules/
 .DS_Store
+
+# Folders to ignore
+node_modules/
+test/
+
+# ignore sensitive config files
+config.json
 
 # ignore log files and databases
 *.log
