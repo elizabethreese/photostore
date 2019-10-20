@@ -21,16 +21,16 @@ app.use(cookieParser());
 
 app.use(express.static(__dirname + '/public'));
 
-//SSL cert info
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/photolotus.app/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/photolotus.app/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/photolotus.app/chain.pem', 'utf8');
+// //SSL cert info
+// const privateKey = fs.readFileSync('/etc/letsencrypt/live/photolotus.app/privkey.pem', 'utf8');
+// const certificate = fs.readFileSync('/etc/letsencrypt/live/photolotus.app/cert.pem', 'utf8');
+// const ca = fs.readFileSync('/etc/letsencrypt/live/photolotus.app/chain.pem', 'utf8');
 
-const credentials = {
-    key: privateKey,
-    cert: certificate,
-    ca: ca
-};
+// const credentials = {
+//     key: privateKey,
+//     cert: certificate,
+//     ca: ca
+// };
 
 // This body parser is needed to access the body of a request cleanly
 app.use(bodyParser.json({ limit: '50mb' }));
@@ -168,9 +168,11 @@ app.get("/log-out", function (req, res, next) {
     return
 })
 
-//Starting https server
-const httpsServer = https.createServer(credentials, app);
+// //Starting https server
+// const httpsServer = https.createServer(credentials, app);
 
-httpsServer.listen(443, () => {
-    console.log('HTTPS Server running on port 443');
-});
+// httpsServer.listen(443, () => {
+//     console.log('HTTPS Server running on port 443');
+// });
+
+app.listen(8080, '155.138.233.68');
